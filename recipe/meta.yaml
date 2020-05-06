@@ -1,4 +1,4 @@
-{% set version = '1.0.2' %}
+{% set version = "1.0.2" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -14,8 +14,8 @@ source:
   sha256: 8dac1fa07a4dc37891a606d33071dc0e24e4644876c120e75f4c9e90e73555bb
 
 build:
-  merge_build_host: True  # [win]
-  number: 1003
+  merge_build_host: true  # [win]
+  number: 1004
   skip: true  # [win32]
   rpaths:
     - lib/R/lib/
@@ -25,16 +25,16 @@ requirements:
   build:
     - {{ compiler('c') }}        # [not win]
     - {{ compiler('m2w64_c') }}        # [win]
-    - {{posix}}filesystem        # [win]
-    - {{posix}}make
-    - {{posix}}sed               # [win]
-    - {{posix}}coreutils         # [win]
-    - {{posix}}zip               # [win]
+    - {{ posix }}filesystem        # [win]
+    - {{ posix }}make
+    - {{ posix }}sed               # [win]
+    - {{ posix }}coreutils         # [win]
+    - {{ posix }}zip               # [win]
   host:
     - r-base
   run:
     - r-base
-    - {{native}}gcc-libs         # [win]
+    - {{ native }}gcc-libs         # [win]
 
 test:
   commands:
@@ -43,12 +43,12 @@ test:
 
 about:
   home: https://CRAN.R-project.org/package=parmigene
-  license: AGPL-3
-  summary: The package provides a parallel estimation of the mutual information based on entropy
-    estimates from k-nearest neighbors distances and algorithms for the reconstruction
-    of gene regulatory networks.
+  license: AGPL-3.0-only
+  summary: The package provides a parallel estimation of the mutual information based on entropy estimates from k-nearest neighbors distances and algorithms for the reconstruction of gene regulatory networks.
   license_family: AGPL
 
+  license_file:
+    - {{ environ["PREFIX"] }}/lib/R/share/licenses/AGPL-3
 extra:
   recipe-maintainers:
     - conda-forge/r
